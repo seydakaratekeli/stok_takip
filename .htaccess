@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# www olmadan yönlendirme
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Trailing slash ekleme
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteRule ^(.*)$ $1/ [L,R=301]
+
+# Dosya ve klasörler mevcutsa rewrite yapma
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# API ve dosya isteklerini koru
+RewriteRule ^(api|css|js|images|config|includes)/ - [L]
+
+# Ana sayfa
+RewriteRule ^$ index.php [L]
+
+# Sayfalar
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^logout/?$ logout.php [L]
+RewriteRule ^dashboard/?$ index.php [L]
+
+# Pages klasörü
+RewriteRule ^malzemeler/?$ pages/items.php [L]
+RewriteRule ^stok-hareketleri/?$ pages/movements.php [L]
+RewriteRule ^raporlar/?$ pages/reports.php [L]
+RewriteRule ^kullanici-yonetimi/?$ pages/users.php [L]
