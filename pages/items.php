@@ -283,7 +283,7 @@ function editItem(id, code, name, description, uomId, minStock) {
 // Silme onayı
 function confirmDelete(id, itemName) {
     if (confirm('"' + itemName + '" malzemesini silmek istediğinizden emin misiniz?\n\nBu işlem geri alınamaz!')) {
-        window.location.href = '/includes/items_action.php?action=delete&id=' + id;
+        window.location.href = '../includes/items_action.php?action=delete&id=' + id;
     }
 }
 
