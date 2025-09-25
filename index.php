@@ -40,6 +40,17 @@ try {
     // Toplam stok hareketi sayısı
     $stmt = $db->query("SELECT COUNT(*) as total_movements FROM stock_movements");
     $total_movements = $stmt->fetch(PDO::FETCH_ASSOC)['total_movements'];
+      // Üretim istatistikleri
+    $stmt = $db->query("
+        SELECT 
+            COUNT(*) as total_orders,
+            SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END) as in_progress,
+            SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed,
+            SUM(target_quantity) as target_production
+        FROM production_orders
+        WHERE status != 'cancelled'
+    ");
+    $production_stats = $stmt->fetch(PDO::FETCH_ASSOC);
     
 } catch(PDOException $e) {
     $error = "Veritabanı hatası: " . $e->getMessage();
@@ -118,7 +129,22 @@ try {
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-md-3">
+    <div class="card text-white bg-info mb-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h5>Üretimde</h5>
+                    <h2><?php echo $production_stats['in_progress'] ?? 0; ?></h2>
+                </div>
+                <div class="align-self-center">
+                    <i class="fas fa-industry fa-2x"></i>
+                </div>
+            </div>
+            <a href="pages/production_orders.php?status=in_progress" class="text-white-50 small">Üretim Emirleri</a>
+        </div>
+    </div>
+</div>
                 <div class="col-md-3">
                     <div class="card text-white bg-info mb-3">
                         <div class="card-body">

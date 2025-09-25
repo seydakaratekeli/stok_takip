@@ -1,7 +1,9 @@
 <!-- includes/sidebar.php -->
 <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
+
         <ul class="nav flex-column">
+
             <li class="nav-item">
                 <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>" href="/stok_takip/index.php">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
@@ -17,6 +19,24 @@
                     <i class="fas fa-exchange-alt"></i> Stok Hareketleri
                 </a>
             </li>
+
+            <!-- ÜRETİM MODÜLLERİ -->
+            <?php if (hasPermission('production_movements') || hasPermission('all')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'production_orders.php' ? 'active' : ''; ?>" href="/stok_takip/pages/production_orders.php">
+                    <i class="fas fa-industry"></i> Üretim Emirleri
+                </a>
+            </li>
+            <?php endif; ?>
+              <!-- Mal Kabul -->
+            <?php if (hasPermission('mal_kabul') || hasPermission('all')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'goods_receipt.php' ? 'active' : ''; ?>"  href="/stok_takip/pages/goods_receipt.php">
+                    <i class="fas fa-clipboard-check"></i> Mal Kabul
+                </a>
+            </li>
+            <?php endif; ?>
+
             <li class="nav-item">
     <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'counts.php' ? 'active' : ''; ?>" href="/stok_takip/pages/counts.php">
         <i class="fas fa-clipboard-check"></i> Stok Sayımı

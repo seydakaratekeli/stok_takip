@@ -11,33 +11,36 @@ try {
     $db = getDBConnection();
     
     // Dokümanda belirtilen yetki gereksinimleri
-    $required_permissions = [
-        // Yönetici
-        1 => ['all' => true],
-        
-        // Depo Görevlisi
-        2 => [
-            'items_view' => true,
-            'movements' => true,
-            'counts' => true,
-            'iade' => true,
-            'view_reports' => true
-        ],
-        
-        // Üretim Operatörü
-        3 => [
-            'items_view' => true,
-            'production_movements' => true,
-            'uretim_iade' => true
-        ],
-        
-        // Satınalma
-        4 => [
-            'items_manage' => true,
-            'siparis' => true,
-            'view_reports' => true
-        ]
-    ];
+   // Yetki tanımlarını güncelle
+$required_permissions = [
+    // Yönetici
+    1 => ['all' => true],
+    
+    // Depo Görevlisi
+    2 => [
+        'items_view' => true,
+        'movements' => true,
+        'counts' => true,
+        'iade' => true,
+        'view_reports' => true,
+        'mal_kabul' => true  // Mal Kabul yetkisi eklendi
+    ],
+    
+    // Üretim Operatörü
+    3 => [
+        'items_view' => true,
+        'production_movements' => true,
+        'uretim_iade' => true,
+        'view_reports' => true
+    ],
+    
+    // Satınalma
+    4 => [
+        'items_manage' => true,
+        'siparis' => true,
+        'view_reports' => true
+    ]
+];
     
     foreach ($required_permissions as $role_id => $permissions) {
         $permissions_json = json_encode($permissions);
