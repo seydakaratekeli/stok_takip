@@ -20,23 +20,7 @@
                 </a>
             </li>
 
-            <!-- ÜRETİM MODÜLLERİ -->
-            <?php if (hasPermission('production_movements') || hasPermission('all')): ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'production_orders.php' ? 'active' : ''; ?>" href="/stok_takip/pages/production_orders.php">
-                    <i class="fas fa-industry"></i> Üretim Emirleri
-                </a>
-            </li>
-            <?php endif; ?>
-              <!-- Mal Kabul -->
-            <?php if (hasPermission('mal_kabul') || hasPermission('all')): ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'goods_receipt.php' ? 'active' : ''; ?>"  href="/stok_takip/pages/goods_receipt.php">
-                    <i class="fas fa-clipboard-check"></i> Mal Kabul
-                </a>
-            </li>
-            <?php endif; ?>
-
+            
             <li class="nav-item">
     <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'counts.php' ? 'active' : ''; ?>" href="/stok_takip/pages/counts.php">
         <i class="fas fa-clipboard-check"></i> Stok Sayımı
@@ -47,13 +31,7 @@
                     <i class="fas fa-chart-bar"></i> Raporlar
                 </a>
             </li>
-            <?php if (hasPermission('siparis') || hasPermission('all')): ?>
-<li class="nav-item">
-    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'orders.php' ? 'active' : ''; ?>" href="/stok_takip/pages/orders.php">
-                    <i class="fas fa-shopping-cart"></i> Sipariş Yönetimi
-    </a>
-</li>
-<?php endif; ?>
+           
 
             <?php if (hasPermission('all')): ?>
             <li class="nav-item">
@@ -62,13 +40,7 @@
                 </a>
             </li>
             <?php endif; ?>
-            <?php if (hasPermission('all')): ?>
-<li class="nav-item">
-    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'role_check.php' ? 'active' : ''; ?>" href="/stok_takip/pages/role_check.php">
-        <i class="fas fa-user-shield"></i> Yetki Kontrolü
-    </a>
-</li>
-<?php endif; ?>
+           
         </ul>
         
         <hr>
